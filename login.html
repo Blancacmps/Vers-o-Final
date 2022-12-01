@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+   
+</head>
+
+<style>
+    h2{ color:rgb(255, 255, 255);;
+        
+        font-size: 40px;
+ text-align: center;
+ height: 100px;
+ margin: 0;
+}
+.titulo{
+   
+    border-radius: 8px;
+}
+body{
+    background-color: rgb(177, 177, 177);
+}
+.titulo2{
+padding-top: 30px ;
+
+}
+
+.geral{  padding-top: 15px;
+text-align: center;
+color: rgb(253, 253, 253);
+}
+
+
+ .name{ 
+ 
+padding: 10px;
+ }
+#nome{ border: solid rgb(101,221, 248);
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    width:300px;
+    height: 40px;
+}
+#login{ border: solid rgb(101,221, 248);
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    width:300px;
+    height: 40px;
+}
+#email{ border: solid rgb(101,221, 248);
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    width:300px;
+    height: 40px;
+}
+#senha{ border: solid rgb(101,221, 248);
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    width:300px;
+    height: 40px;
+}
+#confsenha{ border: solid rgb(101,221, 248);
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    width:300px;
+    height: 40px;
+}
+ .login{
+padding: 10px;
+ }
+
+ .email{
+padding: 10px;
+ }
+
+ .senha{
+padding: 10px;
+ }
+
+ .confirmar{
+padding: 10px;
+ } 
+
+ .botao{ padding: 10px;
+     text-align: center ;
+ }
+ button{
+     width: 150px;
+     height: 30px;
+     background-color: rgb(255, 255, 255);
+     border: solid rgb(101,221, 248);;
+     color: rgb(0, 0, 0);
+ }
+</style>
+<body>
+
+
+<div class="titulo">
+    <div class="titulo2"> 
+        <h2>FAÇA SEU LOGIN:</h2>
+    </div>
+
+</div>
+
+
+    <div class="geral">
+      <b>  Escreva seu nome:</b> 
+        <div class="name">
+    <input type="text" placeholder="Minimo de 10 caracteres" id="nome" required oninput="validarNome()"  >
+        </div>
+           <b>Escolha seu usuário:</b> 
+        <div class="login">
+    <input type="text" placeholder="Maximo de 10 caracteres" id="login" required oninput="validarLogin()">
+        </div>
+          <b>Digite seu email:</b>
+        <div class="email">
+    <input type="email" placeholder="Insira um email valido" id="email" required oninput="validarEmail()">
+        </div>
+        <b>Crie sua senha:</b>
+    <div class="senha">
+    <input type="password" placeholder="Use numeros e letras" id="senha" required oninput="compararSenha()">
+    </div>
+    <b>Confirme sua senha:</b>
+    <div class="confirmar">
+    <input type="password" placeholder="As senhas devem ser iguais" id="confsenha" required oninput="compararSenha()">
+    </div>
+    </div>
+    
+    <div class="botao">
+ <button class="button" onclick="inicial ()"> ENTRAR</button>
+    </div>
+
+    <script>
+        document.addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        const button = document.querySelector("button");
+        button.click();
+         }
+      });
+
+
+       
+        const nome = document.getElementById('nome');
+        const login = document.getElementById('login');
+        const email = document.getElementById('email');
+        const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        const senha = document.getElementById('senha');
+        const confsenha = document.getElementById('confsenha');
+    
+  
+        geral.addEventListener('submit', (e) =>{  
+            e.preventDefault()
+        });
+
+      
+
+function validarNome() {
+    if (nome.value == ""){
+        span[0].style.display = "none";
+    }
+    else if (nome.value.length < 10){
+        nome.style.border="3px solid #A72608";
+        span[0].style.display = "block";
+    }
+    else{
+        nome.style.border="3px solid #004E98";
+        span[0].style.display = "none";
+        var nomeSave = document.querySelector("#nome").value;
+        localStorage.setItem('nome', nomeSave);
+    }
+};
+
+function validarLogin() {
+    if (login.value == ""){
+        span[1].style.display = "none";
+    }
+    else if (login.value.length > 10){
+        login.style.border = "3px solid #A72608";
+        span[1].style.display = "block";
+    }
+    else{
+        login.style.border = "3px solid #004e98";
+        span[1].style.display = "none";
+        var loginSave = document.querySelector("#login").value
+        localStorage.setItem('login', loginSave)
+    }
+};
+
+function validarEmail() {
+    if (email.value == "") {
+        span[2].style.display = "none";
+    }
+    else if (!emailRegex.test(email.value)){
+        email.style.border = "3px solid #A72608"
+        span[2].style.display = "block";
+    }
+    else {
+        email.style.border = "3px solid #004e98"
+        sapn[2].style.display = "none";
+        var emailSave = document.querySelector("#email").value;
+        localStorage.setItem('email', emailSave);
+    }
+};
+
+function compararSenha() {
+    if (senha.value == "" && confsenha.value == "") {
+        span[3].style.border.display = "none";
+        span[4].style.border.display = "none";
+    }
+    else if (senha.value == confsenha.value) {
+        senha.style.border = "3px solid #004e98";
+        confsenha.style.border = "3px solid #004e98";
+        span[3].style.display = "none";
+        span[4].style.display = "none";
+        var senhaSave = document.querySelector("#senha").value;
+        localStorage.setItem('senha', senhaSave)
+    }
+    else {
+        senha.style.border = "3px solid #A72608";
+        confsenha.style.border = "3px solid #A72608";
+        span[3].style.display = "block";
+        span[4].style.display = "block";
+    }
+};
+
+function inicial() {
+    if(nome.value, login.value, email.value, senha.value, confsenha.value == ""){
+
+    }
+    else if (nome.value.length < 10, login.value.length > 10, !emailRegex.test(email.value), senha.value != confsenha.value){
+
+    }
+    else{
+        window.location.href = "index.html"
+    }
+};
+
+    </script>
+</body>
+</html>
